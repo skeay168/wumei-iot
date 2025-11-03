@@ -636,6 +636,7 @@ import {
 import { getNewStatus, updateStatus } from "@/api/system/status";
 import { getNewSet, updateSet } from "@/api/system/set";
 import { listCategory } from "@/api/system/category";
+import { updateDeviceStatus, updateDeviceSetting } from '@/api/system/mqtt';
 
 export default {
   name: "Device",
@@ -974,7 +975,7 @@ export default {
       this.$refs["statusForm"].validate(valid => {
         if (valid) {
           if (this.statusForm.deviceStatusId != null) {
-            updateStatus(this.statusForm).then(response => {
+            updateDeviceStatus(this.statusForm).then(response => {
               this.msgSuccess("更新成功");
               if(!isApply){
                 this.statusOpen = false;
@@ -990,7 +991,7 @@ export default {
       this.$refs["setForm"].validate(valid => {
         if (valid) {
           if (this.setForm.deviceSetId != null) {
-            updateSet(this.setForm).then(response => {
+            updateDeviceSetting(this.setForm).then(response => {
               this.msgSuccess("更新成功");
               if(!isApply){
                 this.setOpen = false;
